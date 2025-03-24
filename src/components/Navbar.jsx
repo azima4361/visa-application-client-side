@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
 import logo from "../assets/logo2.jpg";
 
@@ -9,7 +9,9 @@ const Navbar = () => {
         <>
           <Link to="/" className="lg:text-lg font-bold pr-4 pb-2 lg:pb-0">Home</Link>
           <Link to="/all" className="lg:text-lg font-bold pr-4 pb-2 lg:pb-0">All visas</Link>
-          
+          <NavLink className={({isActive})=>`${user?.email ? "lg:text-lg font-bold pr-4 pb-2 lg:pb-0" : "hidden"}`} to='/add'>Add Visa</NavLink>
+          <NavLink className={({isActive})=>`${user?.email ? "lg:text-lg font-bold pr-4 pb-2 lg:pb-0" : "hidden"}`} to='/my-added-visa'>My Added Visa</NavLink>
+          <NavLink className={({isActive})=>`${user?.email ? "lg:text-lg font-bold pr-4 pb-2 lg:pb-0" : "hidden"}`} to='/my-application'>My Application</NavLink>
          
         </>
       );

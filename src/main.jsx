@@ -8,6 +8,12 @@ import Home from './Pages/Home.jsx';
 import AuthProvider from './contexts/AuthProvider.jsx';
 import Login from './components/Login.jsx';
 import Register from './components/Register.jsx';
+import PrivateRoute from './Layouts/PrivateRoute.jsx';
+import AddVisa from './components/AddVisa.jsx';
+
+import MyApplication from './components/MyApplication.jsx';
+import MyAddedVisa from './components/MyaddedVisa.jsx';
+import All from './components/All.jsx';
 
 const router = createBrowserRouter([
   {
@@ -18,6 +24,22 @@ const router = createBrowserRouter([
       {
         index: true, // Default route for "/"
         element: <Home />,
+      },
+      {
+        path:'/all',
+        element:<All></All>
+      },
+      {
+        path:'/add',
+        element:<PrivateRoute><AddVisa></AddVisa></PrivateRoute>
+      },
+      {
+        path:'/my-added-visa',
+        element:<PrivateRoute><MyAddedVisa></MyAddedVisa></PrivateRoute>
+      },
+      {
+        path:'/my-application',
+        element:<PrivateRoute><MyApplication></MyApplication></PrivateRoute>
       },
       {
         path:'/login',
