@@ -43,6 +43,26 @@ const Login = () => {
       toast.success("Logged in successfully!");
       navigate(location?.state ? location.state : "/" );
       localStorage.setItem("userEmail", user.email);
+
+
+     
+          
+
+          // update last login time 
+          const lastSignInTime = result?.user?.metadata?.lastSignInTime;
+          const loginInfo= {email,lastSignInTime};
+          fetch('http://localhost:5000/users',{
+              method:'PATCH',
+              headers:{
+                  'content-type':'application/json'
+              },
+              body: JSON.stringify(loginInfo)
+          })
+          .then(res=>res.json())
+          .then(data=>{
+              // console.log('sign in info updated in db', data)
+          })
+
     })
     .catch((err) => {
       
