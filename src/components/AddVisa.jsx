@@ -72,7 +72,7 @@ const AddVisa = () => {
           name="countryImage"
           value={visaData.countryImage}
           onChange={handleChange}
-          placeholder="Image URL (Upload to imgbb)" 
+          placeholder="" 
           className="w-full border p-2"
           required
         />

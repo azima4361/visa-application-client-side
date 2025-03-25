@@ -1,15 +1,11 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+
+import { Link, useLoaderData } from "react-router-dom";
 
 const AllVisas = () => {
-  const [visas, setVisas] = useState([]);
+  
+  const visas = useLoaderData();
+console.log(visas)
 
-  useEffect(() => {
-    fetch("http://localhost:5000/all") 
-      .then((res) => res.json())
-      .then((data) => setVisas(data))
-      .catch((err) => console.error("Error fetching visas:", err));
-  }, []);
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">

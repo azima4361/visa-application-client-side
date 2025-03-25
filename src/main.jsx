@@ -14,6 +14,7 @@ import AddVisa from './components/AddVisa.jsx';
 import MyApplication from './components/MyApplication.jsx';
 import MyAddedVisa from './components/MyaddedVisa.jsx';
 import All from './components/All.jsx';
+import VisaDetails from './components/VisaDetails.jsx';
 
 const router = createBrowserRouter([
   {
@@ -24,10 +25,13 @@ const router = createBrowserRouter([
       {
         index: true, // Default route for "/"
         element: <Home />,
+        loader: ()=>  fetch("http://localhost:5000/all"),
       },
       {
         path:'/all',
-        element:<All></All>
+        element:<All></All>,
+        loader: ()=>  fetch("http://localhost:5000/all"),
+        
       },
       {
         path:'/add',
@@ -40,6 +44,11 @@ const router = createBrowserRouter([
       {
         path:'/my-application',
         element:<PrivateRoute><MyApplication></MyApplication></PrivateRoute>
+      },
+      {
+        path:'/visa/:id',
+        element:<PrivateRoute><VisaDetails></VisaDetails></PrivateRoute>,
+        loader:({params})=> fetch(`http://localhost:5000/visa/${params.id}`) 
       },
       {
         path:'/login',
