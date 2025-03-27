@@ -18,7 +18,7 @@ const LatestVisa = () => {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {visas.map((visa) => (
           <div key={visa._id} className="bg-white shadow-lg rounded-lg p-4">
-            <img src={visa.countryImage} alt={visa.country} className="w-full h-40 object-cover rounded-md" />
+            <img src={visa.countryImage} alt={visa.countryName} className="w-full h-40 object-cover rounded-md" />
             <h3 className="text-xl font-bold mt-3">{visa.countryName}</h3>
             <p><strong>Visa Type:</strong> {visa.visaType}</p>
             <p><strong>Processing Time:</strong> {visa.processingTime}</p>
