@@ -21,6 +21,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <MainLayout />,
     errorElement: <ErrorPage />,
+    loader: ()=>  fetch("http://localhost:5000/all"),
     children: [
       {
         index: true, // Default route for "/"
@@ -39,12 +40,13 @@ const router = createBrowserRouter([
       },
       {
         path:'/my-added-visa',
-        element:<PrivateRoute><MyAddedVisa></MyAddedVisa></PrivateRoute>
+        element:<PrivateRoute><MyAddedVisa></MyAddedVisa></PrivateRoute>,
+        loader:({params})=> fetch(`http://localhost:5000/all.${params.id}`)
       },
       {
         path:'/applications',
         element:<PrivateRoute><MyApplication></MyApplication></PrivateRoute>,
-        loader:()=> fetch(`http://localhost:5000/applications`) 
+        loader:()=> fetch('http://localhost:5000/all') 
       },
       {
         path:'/visa/:id',

@@ -1,16 +1,22 @@
 import { useContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../contexts/AuthContext";
+import { useLoaderData } from "react-router-dom";
 
 const MyApplication = () => {
+  const loadedVisa = useLoaderData();
+  // const {_id, countryImage, countryname}=loadedVisa;
+  console.log(loadedVisa)
   const { user } = useContext(AuthContext);
   const [applications, setApplications] = useState([]);
 
   useEffect(() => {
     if (user) {
-      fetch(`http://localhost:5000/applications/${user.email}`)
+      fetch(`http://localhost:5000/applications/email/${user.email}`)
         .then(res => res.json())
-        .then(data => setApplications(data));
+        .then(data => 
+          // console.log(data))
+          setApplications(data));
     }
   }, [user]);
 
@@ -66,5 +72,4 @@ const MyApplication = () => {
     </div>
   );
 };
-
 export default MyApplication;

@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Swal from "sweetalert2";
+import { AuthContext } from "../contexts/AuthContext";
 
 const AddVisa = () => {
+  const {user} = useContext(AuthContext);
   const [visaData, setVisaData] = useState({
+    email: user?.email || "",
     countryImage: "",
     countryName: "",
     visaType: "Tourist Visa",
@@ -32,6 +35,10 @@ const AddVisa = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!user?.email) {
+      Swal.fire("Error", "You must be logged in to add a visa!", "error");
+      return;
+    }
 
     try {
       const response = await fetch("http://localhost:5000/all", {
@@ -39,12 +46,13 @@ const AddVisa = () => {
         headers: { 
           "Content-Type": "application/json"
          },
-        body: JSON.stringify(visaData),
+        body: JSON.stringify({...visaData, email:user.email}),
       });
 
       if (response.ok) {
         Swal.fire("Success!", "Visa added successfully!", "success");
         setVisaData({
+          email:user.email,
           countryImage: "",
           countryName: "",
           visaType: "Tourist Visa",
