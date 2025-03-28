@@ -4,11 +4,12 @@ import { FcGoogle } from "react-icons/fc";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '../contexts/AuthContext';
+import { updateProfile } from "firebase/auth"; // ✅ Import updateProfile
 
 const Register = () => {
   const { createNewUser, setUser, signInWithGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
-  const location = useLocation(); 
+  const location = useLocation();
 
   const [error, setError] = useState({ name: "", password: "", general: "" });
 
@@ -20,7 +21,7 @@ const Register = () => {
         const user = result.user;
         setUser(user);
         toast.success("Logged in with Google!");
-        navigate(location.state?.from || "/"); 
+        navigate(location.state?.from || "/");
       })
       .catch((err) => {
         setError({ ...error, general: "Google sign-in failed." });
@@ -58,24 +59,37 @@ const Register = () => {
     createNewUser(email, password)
       .then((result) => {
         const user = result.user;
-        setUser(user);
+
+        // ✅ Update Firebase Profile with Name & Photo
+        updateProfile(user, {
+          displayName: name,
+          photoURL: photo
+        })
+        .then(() => {
+          setUser({ ...user, displayName: name, photoURL: photo }); // ✅ Update local state
+        })
+        .catch((err) => {
+          console.error("Profile update error:", err);
+        });
+
         toast.success("User Registration Successful");
 
+        // ✅ Save user to database
         fetch('http://localhost:5000/users', {
           method: 'POST',
           headers: {
             'content-type': 'application/json'
           },
-          body: JSON.stringify({ name, email })
+          body: JSON.stringify({ name, email, photo })
         })
-          .then(res => res.json())
-          .then(data => {
-            if (data.insertedId) {
-              console.log('User saved to DB:', data);
-            }
-          });
+        .then(res => res.json())
+        .then(data => {
+          if (data.insertedId) {
+            console.log('User saved to DB:', data);
+          }
+        });
 
-        navigate(location.state?.from || "/"); 
+        navigate(location.state?.from || "/");
       })
       .catch((error) => {
         setError({ ...error, general: error.message });

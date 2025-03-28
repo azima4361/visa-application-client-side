@@ -19,6 +19,7 @@ const Login = () => {
         const user = result.user;
         setUser(user);
         toast.success("Logged in with Google!");
+        console.log("Success toast triggered!");
         navigate(location?.state ? location.state : "/");
         localStorage.setItem("userEmail", user.email);
        
@@ -32,15 +33,18 @@ const Login = () => {
     e.preventDefault();
     const form = new FormData(e.target);
     
+    const name= form.get("displayName");
+    const photo= form.get("photoURL");
     const email= form.get("email");
     const password= form.get("password");
     // console.log({email,password})
     userLogin(email,password)
     .then(result=>{
       const user= result.user;
-      // console.log(user)
+      console.log(user)
       setUser(user);
       toast.success("Logged in successfully!");
+      console.log("Success toast triggered!");
       navigate(location?.state ? location.state : "/" );
       localStorage.setItem("userEmail", user.email);
 

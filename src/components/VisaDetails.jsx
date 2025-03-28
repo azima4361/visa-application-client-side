@@ -26,10 +26,10 @@ const VisaDetails = () => {
       appliedDate: new Date().toISOString().split("T")[0], 
       fee: visa.fee,
       visaId: visa._id,
-      country: visa.countryName, // ✅ Add country name
-      countryImage: visa.countryImage, // ✅ Add country image
-      visaType: visa.visaType, // ✅ Add visa type
-      processingTime: visa.processingTime, // ✅ Add processing time
+      country: visa.countryName, 
+      countryImage: visa.countryImage, 
+      visaType: visa.visaType, 
+      processingTime: visa.processingTime, 
       validity: visa.validity, 
       applicationMethod: visa.applicationMethod,
       status: "Pending", 

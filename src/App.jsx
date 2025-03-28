@@ -1,4 +1,4 @@
-
+import { ToastContainer } from 'react-toastify';
 import './App.css'
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
   return (
     <>
      
-
+     <ToastContainer />
     </>
   )
 }
