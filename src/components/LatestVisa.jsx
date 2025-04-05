@@ -3,7 +3,7 @@ import { Link, useLoaderData } from "react-router-dom";
 
 const LatestVisa = () => {
     const loadedVisa= useLoaderData();
-  const [visas, setVisas] = useState(loadedVisa);
+    const [visas, setVisas] = useState(Array.isArray(loadedVisa) ? loadedVisa : []);
 
   useEffect(() => {
     fetch("http://localhost:5000/all-visas?limit=6") 
@@ -17,8 +17,9 @@ const LatestVisa = () => {
       <h2 className="text-3xl font-bold text-center mb-6">Latest Visa Applications</h2>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {visas.map((visa) => (
-          <div key={visa._id} className="bg-white shadow-lg rounded-lg p-4">
-            <img src={visa.countryImage} alt={visa.countryName} className="w-full h-40 object-cover rounded-md" />
+          <div key={visa._id} className="shadow-lg rounded-lg p-4">
+            <img src={visa.countryImage} alt={visa.countryName} 
+            className="w-full h-40 object-cover rounded-md" />
             <h3 className="text-xl font-bold mt-3">{visa.countryName}</h3>
             <p><strong>Visa Type:</strong> {visa.visaType}</p>
             <p><strong>Processing Time:</strong> {visa.processingTime}</p>

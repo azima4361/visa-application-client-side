@@ -1,6 +1,8 @@
 /** @type {import('tailwindcss').Config} */
+import daisyui from './node_modules/daisyui';
 export default {
-    content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"], // Adjust based on your project structure
+  darkMode: 'class',
+    content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"], 
     theme: {
       extend: {
         fontFamily: {
@@ -8,6 +10,9 @@ export default {
         },
       },
     },
-    plugins: [require("daisyui")],
+    plugins: [daisyui],
+    daisyui: {
+      themes: ["light","dark",],
+    },
   };
   

@@ -1,10 +1,12 @@
 
 import { useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
+import useTheme from "../hooks/UseTheme";
 
 const AllVisas = () => {
   
   const visas = useLoaderData();
+  const {theme}= useTheme();
 console.log(visas)
 
 const [filteredVisas, setFilteredVisas] = useState(visas);
@@ -27,7 +29,7 @@ const [filteredVisas, setFilteredVisas] = useState(visas);
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
+    <div className={`${theme ==="dark" ? "bg-black text-white" : ""} mx-auto px-4 py-8`}>
       <h2 className="text-3xl font-bold text-center mb-6">All Visas</h2>
       
  
@@ -48,7 +50,7 @@ const [filteredVisas, setFilteredVisas] = useState(visas);
       
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {filteredVisas.map((visa) => (
-          <div key={visa._id} className="bg-white shadow-md rounded-lg p-4">
+          <div key={visa._id} className=" shadow-md rounded-lg p-4">
             <img src={visa.countryImage} alt={visa.countryName} className="w-full h-40 object-cover rounded-md" />
             <h3 className="text-xl font-semibold mt-3">{visa.countryName}</h3>
             <p className="text-gray-600">Type: {visa.visaType}</p>

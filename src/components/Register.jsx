@@ -59,22 +59,18 @@ const Register = () => {
     createNewUser(email, password)
       .then((result) => {
         const user = result.user;
-
-        // ✅ Update Firebase Profile with Name & Photo
         updateProfile(user, {
           displayName: name,
           photoURL: photo
         })
         .then(() => {
-          setUser({ ...user, displayName: name, photoURL: photo }); // ✅ Update local state
+          setUser({ ...user, displayName: name, photoURL: photo }); 
         })
         .catch((err) => {
           console.error("Profile update error:", err);
         });
 
         toast.success("User Registration Successful");
-
-        // ✅ Save user to database
         fetch('http://localhost:5000/users', {
           method: 'POST',
           headers: {

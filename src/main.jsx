@@ -30,7 +30,12 @@ const router = createBrowserRouter([
       },
       {
         path:'/all',
-        element:<All></All>,
+        element:(
+          <div className=''>
+            <All></All>,
+          </div>
+
+        ),
         loader: ()=>  fetch("http://localhost:5000/all"),
         
       },
