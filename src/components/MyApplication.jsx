@@ -2,24 +2,31 @@ import { useContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../contexts/AuthContext";
 import { useLoaderData } from "react-router-dom";
+import Loading from "./Loading";
+import useTheme from '../hooks/UseTheme';
 
 const MyApplication = () => {
   const loadedVisa = useLoaderData();
-  // const {_id, countryImage, countryname}=loadedVisa;
-  console.log(loadedVisa)
+  console.log(loadedVisa);
   const { user } = useContext(AuthContext);
+  const { theme } = useTheme();
   const [applications, setApplications] = useState([]);
-  const [search, setSearch] = useState(""); 
-  const [filteredApplications, setFilteredApplications] = useState([]); 
+  const [search, setSearch] = useState("");
+  const [filteredApplications, setFilteredApplications] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (user) {
+      setLoading(true);
       fetch(`http://localhost:5000/applications/email/${user.email}`)
         .then(res => res.json())
         .then(data => {
-          // console.log(data))
           setApplications(data);
           setFilteredApplications(data);
+          setLoading(false);
+        })
+        .catch(() => {
+          setLoading(false);
         });
     }
   }, [user]);
@@ -46,29 +53,32 @@ const MyApplication = () => {
           .then(() => {
             const updatedApplications = applications.filter(app => app._id !== id);
             setApplications(updatedApplications);
-            setFilteredApplications(updatedApplications); 
+            setFilteredApplications(updatedApplications);
             Swal.fire("Deleted!", "Your visa application has been removed.", "success");
           });
       }
     });
   };
 
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
-      <h2 className="text-3xl font-bold mb-6">My Visa Applications</h2>
+    <div className={`max-w-6xl mx-auto px-4 py-8 transition-all duration-300 ${theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'}`}>
+      <h2 className={`text-3xl font-bold mb-6 ${theme === 'dark' ? 'text-yellow-400' : 'text-blue-700'}`}>My Visa Applications</h2>
 
-
-<div className="flex justify-center mb-6">
+      <div className="flex justify-center mb-6">
         <input
           type="text"
           placeholder="Search by country name..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="px-4 py-2 border rounded-md w-1/2"
+          className={`px-4 py-2 border rounded-md ${theme === 'dark' ? 'border-gray-600 bg-gray-700 text-white' : 'border-gray-300 bg-white'}`}
         />
         <button
           onClick={handleSearch}
-          className="ml-2 bg-blue-500 text-white px-4 py-2 rounded-md"
+          className={`ml-2 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition`}
         >
           Search
         </button>
@@ -77,9 +87,9 @@ const MyApplication = () => {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredApplications.length > 0 ? (
           filteredApplications.map((app) => (
-            <div key={app._id} className="bg-white shadow-lg rounded-lg p-4">
+            <div key={app._id} className={`shadow-lg rounded-lg p-4 ${theme === 'dark' ? 'bg-gray-700' : 'bg-white'}`}>
               <img src={app.countryImage} alt={app.countryName} className="w-full h-40 object-cover rounded-md" />
-              <h3 className="text-xl font-bold mt-3">{app.country}</h3>
+              <h3 className={`text-xl font-bold mt-3 ${theme === 'dark' ? 'text-yellow-400' : 'text-blue-700'}`}>{app.country}</h3>
               <p><strong>Visa Type:</strong> {app.visaType}</p>
               <p><strong>Processing Time:</strong> {app.processingTime}</p>
               <p><strong>Fee:</strong> ${app.fee}</p>
@@ -90,17 +100,18 @@ const MyApplication = () => {
               <p><strong>Email:</strong> {app.email}</p>
               <button
                 onClick={() => handleCancel(app._id)}
-                className="mt-3 bg-red-500 text-white px-4 py-2 rounded-md"
+                className={`mt-3 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition`}
               >
                 Cancel
               </button>
             </div>
           ))
         ) : (
-          <p className="text-gray-500">You have not applied for any visas.</p>
+          <p className={`text-gray-500 ${theme === 'dark' ? 'text-gray-300' : ''}`}>You have not applied for any visas.</p>
         )}
       </div>
     </div>
   );
 };
+
 export default MyApplication;

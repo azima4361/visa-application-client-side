@@ -99,14 +99,20 @@ const Navbar = () => {
                                         {dbUser.name ? dbUser.name.charAt(0) : "U"}
                                     </div>
                                 )}
-                                <button onClick={logOut} className="btn btn-neutral rounded-none">
+                                <button onClick={logOut} className="btn btn-error rounded-none">
                                     Logout
                                 </button>
                             </div>
                         ) : (
                             <div className="hidden md:flex gap-3">
-                                <Link to="/login" className="btn btn-neutral rounded-none">Login</Link>
-                                <Link to="/register" className="btn">Register</Link>
+                                {/* <Link to="/login" className="btn btn-neutral rounded-none">Login</Link>
+                                <Link to="/register" className="btn">Register</Link> */}
+                                <NavLink to="/login" className={({ isActive }) =>
+    `btn btn-sm  ${isActive ? 'btn-primary' : 'btn-neutral'}`
+  }>Login</NavLink>
+                                <NavLink to="/register" className={({ isActive }) =>
+    `btn btn-sm  ${isActive ? 'btn-primary' : 'btn-neutral'}`
+  }>Register</NavLink>
                             </div>
                         )}
                     </div>
@@ -114,8 +120,12 @@ const Navbar = () => {
                     <div className="flex flex-col md:hidden w-full gap-2 text-center">
                         {!user?.email ? (
                             <>
-                                <Link to="/login" className="btn btn-sm btn-neutral w-full">Login</Link>
-                                <Link to="/register" className="btn btn-sm btn-primary w-full">Register</Link>
+                                <NavLink to="/login" className={({ isActive }) =>
+    `btn btn-sm w-full ${isActive ? 'btn-primary' : 'btn-neutral'}`
+  }>Login</NavLink>
+                                <NavLink to="/register" className={({ isActive }) =>
+    `btn btn-sm w-full ${isActive ? 'btn-primary' : 'btn-neutral'}`
+  }>Register</NavLink>
                             </>
                         ) : null}
                     </div>

@@ -3,9 +3,11 @@ import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../contexts/AuthContext";
 import Loading from "./Loading";
+import useTheme from "../hooks/UseTheme";
 
 const VisaDetails = () => {
   const visa = useLoaderData(); 
+  const {theme}= useTheme();
   const { user } = useContext(AuthContext);
   const [showModal, setShowModal] = useState(false);
 
@@ -52,7 +54,7 @@ const VisaDetails = () => {
     <div className="max-w-4xl mx-auto px-4 py-8">
       <img src={visa.countryImage} alt={visa.countryName} className="w-full h-60 object-cover rounded-md" />
       <h2 className="text-3xl font-bold mt-4">{visa.countryName}</h2>
-      <p className="text-lg text-gray-600 mt-2">{visa.description}</p>
+      <p className={`text-lg mt-2 ${theme ==="dark" ? " text-white" : "text-gray-600 "}`}>{visa.description}</p>
       <div className="mt-4 space-y-2">
         <p><strong>Visa Type:</strong> {visa.visaType}</p>
         <p><strong>Processing Time:</strong> {visa.processingTime}</p>
@@ -67,8 +69,8 @@ const VisaDetails = () => {
 
       {showModal && user && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-            <h2 className="text-2xl font-bold mb-4">Apply for {visa.countryName} Visa</h2>
+          <div className={`p-6 rounded-lg shadow-lg w-96 ${theme === 'dark' ? "bg-black" : "bg-white"}` } >
+            <h2 className="text-xl font-bold mb-10 text-center">Apply for {visa.countryName} Visa</h2>
             <form onSubmit={handleApply} className="space-y-3">
               <div>
                 <label>Email</label>
