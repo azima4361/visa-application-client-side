@@ -74,7 +74,7 @@ const MyApplication = () => {
           placeholder="Search by country name..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className={`px-4 py-2 border rounded-md ${theme === 'dark' ? 'border-gray-600 bg-gray-700 text-white' : 'border-gray-300 bg-white'}`}
+          className={`md:px-4 md:py-2 border rounded-md ${theme === 'dark' ? 'border-gray-600 bg-gray-700 text-white' : 'border-gray-300 bg-white'}`}
         />
         <button
           onClick={handleSearch}

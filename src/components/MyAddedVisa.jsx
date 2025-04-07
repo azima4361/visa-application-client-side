@@ -16,7 +16,8 @@ const MyAddedVisas = () => {
 
   useEffect(() => {
     if (user) {
-      fetch(`http://localhost:5000/all/email/${user.email}`)
+      console.log(user)
+      fetch(`https://visa-application-server-side.vercel.app/all/email/${user.email}`)
         .then(res => res.json())
         .then(data => {
           setVisas(data);
@@ -36,7 +37,7 @@ const MyAddedVisas = () => {
       cancelButtonText: "No, keep it",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/all/${id}`, { method: "DELETE" })
+        fetch(`https://visa-application-server-side.vercel.app/all/${id}`, { method: "DELETE" })
           .then(res => res.json())
           .then(() => {
             setVisas(visas.filter(visa => visa._id !== id));
@@ -61,7 +62,7 @@ const MyAddedVisas = () => {
   // Handle Update Visa
   const handleUpdate = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:5000/all/${selectedVisa._id}`, {
+    fetch(`https://visa-application-server-side.vercel.app/all/${selectedVisa._id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
@@ -81,9 +82,9 @@ const MyAddedVisas = () => {
       });
   };
 
-  if (loading) {
-    return <Loading />;
-  }
+  // if (loading) {
+  //   return <Loading />;
+  // }
 
   return (
     <div className={`max-w-6xl mx-auto px-4 py-8 transition-all duration-300 ${theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'}`}>
