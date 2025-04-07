@@ -66,7 +66,7 @@ const Register = () => {
 
         toast.success("User Registration Successful");
 
-        fetch('http://localhost:5000/users', {
+        fetch('https://visa-application-server-side.vercel.app/users', {
           method: 'POST',
           headers: { 'content-type': 'application/json' },
           body: JSON.stringify({ name, email, photo })
@@ -74,7 +74,7 @@ const Register = () => {
           .then(res => res.json())
           .then(data => {
             if (data.insertedId) {
-              console.log('User saved to DB:', data);
+              // console.log('User saved to DB:', data);
             }
           });
 

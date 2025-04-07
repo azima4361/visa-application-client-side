@@ -7,7 +7,7 @@ import useTheme from '../hooks/UseTheme';
 
 const MyApplication = () => {
   const loadedVisa = useLoaderData();
-  console.log(loadedVisa);
+  // console.log(loadedVisa);
   const { user } = useContext(AuthContext);
   const { theme } = useTheme();
   const [applications, setApplications] = useState([]);
@@ -18,7 +18,7 @@ const MyApplication = () => {
   useEffect(() => {
     if (user) {
       setLoading(true);
-      fetch(`http://localhost:5000/applications/email/${user.email}`)
+      fetch(`https://visa-application-server-side.vercel.app/applications/email/${user.email}`)
         .then(res => res.json())
         .then(data => {
           setApplications(data);
@@ -48,7 +48,7 @@ const MyApplication = () => {
       cancelButtonText: "No, keep it",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/applications/${id}`, { method: "DELETE" })
+        fetch(`https://visa-application-server-side.vercel.app/applications/${id}`, { method: "DELETE" })
           .then(res => res.json())
           .then(() => {
             const updatedApplications = applications.filter(app => app._id !== id);

@@ -37,7 +37,7 @@ const VisaDetails = () => {
       status: "Pending",
     };
 
-    fetch("http://localhost:5000/applications", {
+    fetch("https://visa-application-server-side.vercel.app/applications", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(applicationData),

@@ -1,12 +1,19 @@
-# React + Vite
+# 🌐 Smart Visa
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Smart Visa** is a modern web application that helps users explore and apply for visas globally with ease. The platform offers personalized visa recommendations, application tracking, and real user success stories—all in one place.
 
-Currently, two official plugins are available:
+🔗 **Live Website:** [https://visa-application-75d9f.web.app](https://visa-application-75d9f.web.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- ✅ **Smart Visa Recommendation Tool** – Guides users step-by-step to find the best visa for their needs.
+- ✅ **Visa Application Management** – Users can apply, view, search, and cancel visa applications.
+- ✅ **Real Visa Success Stories** – Inspires users with testimonials from successful applicants.
+- ✅ **Responsive and Theme-Aware Design** – Supports light/dark themes and looks great on all devices.
+- ✅ **Interactive Animations & Alerts** – Framer Motion and SweetAlert2 improve UX with smooth interactions.
+
+---
+
+> Built using React, Tailwind CSS, DaisyUI, and Framer Motion for a smooth and modern user experience.

@@ -19,7 +19,7 @@ const AuthProvider = ({children}) => {
         return createUserWithEmailAndPassword(auth, email, password)
         .then((result) => {
           const newUser = result.user;
-          console.log('new user', newUser)
+          // console.log('new user', newUser)
 
           return updateProfile(newUser, {
             displayName: displayName,

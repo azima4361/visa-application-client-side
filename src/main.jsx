@@ -21,12 +21,12 @@ const router = createBrowserRouter([
     path: "/",
     element: <MainLayout />,
     errorElement: <ErrorPage />,
-    loader: ()=>  fetch("http://localhost:5000/all"),
+    loader: ()=>  fetch("https://visa-application-server-side.vercel.app/all"),
     children: [
       {
         index: true, 
         element: <Home />,
-        loader: ()=>  fetch("http://localhost:5000/all"),
+        loader: ()=>  fetch("https://visa-application-server-side.vercel.app/all"),
       },
       {
         path:'/all',
@@ -36,7 +36,7 @@ const router = createBrowserRouter([
           </div>
 
         ),
-        loader: ()=>  fetch("http://localhost:5000/all"),
+        loader: ()=>  fetch("https://visa-application-server-side.vercel.app/all"),
         
       },
       {
@@ -46,17 +46,17 @@ const router = createBrowserRouter([
       {
         path:'/my-added-visa',
         element:<PrivateRoute><MyAddedVisa></MyAddedVisa></PrivateRoute>,
-        loader:({params})=> fetch(`http://localhost:5000/all.${params.id}`)
+        loader:({params})=> fetch(`https://visa-application-server-side.vercel.app/all.${params.id}`)
       },
       {
         path:'/applications',
         element:<PrivateRoute><MyApplication></MyApplication></PrivateRoute>,
-        loader:()=> fetch('http://localhost:5000/all') 
+        loader:()=> fetch('https://visa-application-server-side.vercel.app/all') 
       },
       {
         path:'/visa/:id',
         element:<PrivateRoute><VisaDetails></VisaDetails></PrivateRoute>,
-        loader:({params})=> fetch(`http://localhost:5000/visa/${params.id}`) 
+        loader:({params})=> fetch(`https://visa-application-server-side.vercel.app/visa/${params.id}`) 
       },
       {
         path:'/login',

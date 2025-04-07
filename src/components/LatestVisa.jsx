@@ -6,10 +6,11 @@ const LatestVisa = () => {
     const [visas, setVisas] = useState(Array.isArray(loadedVisa) ? loadedVisa : []);
 
   useEffect(() => {
-    fetch("http://localhost:5000/all-visas?limit=6") 
+    fetch("https://visa-application-server-side.vercel.app/all-visas?limit=6") 
       .then((res) => res.json())
       .then((data) => setVisas(data))
-      .catch((err) => console.error("Error fetching latest visas:", err));
+      .catch((err) => 
+        console.error("Error fetching latest visas:", err));
   }, []);
 
   return (

@@ -60,7 +60,7 @@ const Login = () => {
         localStorage.setItem("userEmail", user.email);
 
         const lastSignInTime = user?.metadata?.lastSignInTime;
-        fetch('http://localhost:5000/users', {
+        fetch('https://visa-application-server-side.vercel.app/users', {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, lastSignInTime })

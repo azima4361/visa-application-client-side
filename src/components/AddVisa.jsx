@@ -44,7 +44,7 @@ const AddVisa = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/all", {
+      const response = await fetch("https://visa-application-server-side.vercel.app/all", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

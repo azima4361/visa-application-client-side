@@ -29,16 +29,17 @@ const Navbar = () => {
 
     useEffect(() => {
                 if (user?.email) {
-                    fetch(`http://localhost:5000/users/${user.email}`)
+                    fetch(`https://visa-application-server-side.vercel.app/users/${user.email}`)
                         .then(res => res.json())
                         .then(data => {
                             if (Array.isArray(data) && data.length > 0) {
                                 setDbUser(data[0]); 
                             } else {
-                                console.error("No user data found");
+                                // console.error("No user data found");
                             }
                         })
-                        .catch(error => console.error("Error fetching user:", error));
+                        .catch(error => 
+                            console.error("Error fetching user:", error));
                 }
             }, [user]);
 

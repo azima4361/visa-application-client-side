@@ -7,7 +7,7 @@ const AllVisas = () => {
   
   const visas = useLoaderData();
   const {theme}= useTheme();
-console.log(visas)
+// console.log(visas)
 
 const [filteredVisas, setFilteredVisas] = useState(visas);
   const [selectedVisaType, setSelectedVisaType] = useState("");
