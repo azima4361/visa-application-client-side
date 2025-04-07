@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Lightbulb, Compass, ArrowRight } from "lucide-react";
-import useTheme from "../hooks/UseTheme"; 
+import Lottie  from 'lottie-react'; 
+import flight from '../assets/flight.json'; 
+import useTheme from "../hooks/UseTheme";
 
 const steps = [
   {
@@ -44,22 +46,29 @@ const VisaRecommend = () => {
 
   return (
     <section
-      className={`my-20 px-6 max-w-5xl mx-auto py-16 rounded-3xl shadow-xl border ${
+      className={`md:mb-16 pb-10 px-6 max-w-5xl mx-auto  rounded-3xl shadow-xl border ${
         isDark
           ? "bg-gray-900 text-white border-gray-800"
           : "bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 text-gray-900 border-blue-100"
       }`}
     >
-     
+      
+      <div className="">
+        <Lottie 
+          animationData={flight} 
+          loop={true} 
+          className="w-[300px] h-[300px] mx-auto" 
+        />
+      </div>
+
       <div className="text-center mb-10">
-        <h2 className="text-4xl font-bold mb-4">
-          Find the Right Visa for You
-        </h2>
+        <h2 className="text-2xl md:text-4xl font-bold mb-4">Find the Right Visa for You</h2>
         <p
-          className={`text-lg max-w-3xl mx-auto ${
+          className={`md:text-lg max-w-3xl mx-auto ${
             isDark ? "text-gray-300" : "text-gray-700"
           }`}
         >
+          
           Not sure which visa fits your journey? Our smart assistant will guide
           you based on your goals — whether you're aiming to{" "}
           <strong>study</strong>, <strong>work</strong>, <strong>travel</strong>
@@ -67,12 +76,11 @@ const VisaRecommend = () => {
         </p>
       </div>
 
-     
       <div className="flex flex-col md:flex-row items-center justify-around gap-6 mb-12">
         <div className="flex items-center space-x-4">
           <Lightbulb className="w-10 h-10 text-yellow-500" />
           <span
-            className={`text-lg font-medium ${
+            className={`md:text-lg font-medium ${
               isDark ? "text-gray-100" : "text-gray-800"
             }`}
           >
@@ -82,7 +90,7 @@ const VisaRecommend = () => {
         <div className="flex items-center space-x-4">
           <Compass className="w-10 h-10 text-purple-600" />
           <span
-            className={`text-lg font-medium ${
+            className={`md:text-lg font-medium ${
               isDark ? "text-gray-100" : "text-gray-800"
             }`}
           >
@@ -91,7 +99,6 @@ const VisaRecommend = () => {
         </div>
       </div>
 
-     
       <div
         className={`rounded-xl shadow-lg px-6 py-10 border ${
           isDark ? "bg-gray-900 border-gray-700" : "bg-white border-blue-200"
@@ -107,7 +114,7 @@ const VisaRecommend = () => {
             className="text-center"
           >
             <h3
-              className={`text-xl font-semibold mb-6 ${
+              className={`md:text-xl font-semibold mb-6 ${
                 isDark ? "text-white" : "text-gray-900"
               }`}
             >
@@ -121,7 +128,7 @@ const VisaRecommend = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => handleOptionClick(option)}
-                  className="bg-blue-500 text-white px-6 py-3 rounded-lg font-medium transition hover:bg-blue-700"
+                  className="bg-blue-500 text-white px-6 py-3 rounded-lg md:font-medium transition hover:bg-blue-700"
                 >
                   {option}
                 </motion.button>
@@ -130,7 +137,6 @@ const VisaRecommend = () => {
           </motion.div>
         </AnimatePresence>
 
-       
         <div className="mt-8 flex justify-center gap-2">
           {steps.map((_, idx) => (
             <span
@@ -147,11 +153,10 @@ const VisaRecommend = () => {
         </div>
       </div>
 
-      
       <div className="mt-10 flex justify-center">
         <button
           onClick={() => navigate("/all")}
-          className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-700 transition px-6 py-3 text-white text-lg font-semibold rounded-lg shadow-md"
+          className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-700 transition px-6 py-3 text-white md:text-lg font-semibold rounded-lg shadow-md"
         >
           Skip & Try Recommender <ArrowRight className="w-5 h-5" />
         </button>

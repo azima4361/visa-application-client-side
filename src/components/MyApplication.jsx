@@ -78,7 +78,7 @@ const MyApplication = () => {
         />
         <button
           onClick={handleSearch}
-          className={`ml-2 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition`}
+          className={`ml-2 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition cursor-pointer`}
         >
           Search
         </button>
@@ -100,7 +100,7 @@ const MyApplication = () => {
               <p><strong>Email:</strong> {app.email}</p>
               <button
                 onClick={() => handleCancel(app._id)}
-                className={`mt-3 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition`}
+                className={`mt-3 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition cursor-pointer`}
               >
                 Cancel
               </button>

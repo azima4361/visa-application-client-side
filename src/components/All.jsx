@@ -35,11 +35,11 @@ const [filteredVisas, setFilteredVisas] = useState(visas);
  
  <div className={`flex justify-center mb-6 ${theme === 'dark' ? 'bg-black' : ""}`}>
         <select
-          className="px-4 py-2 border rounded-md"
+          className="px-4 py-2 border rounded-md cursor-pointer"
           value={selectedVisaType}
           onChange={handleFilterChange}
         >
-          <option className={`${theme === 'dark' ? 'bg-black' : ""}`} value="" >All Visa Types</option>
+          <option className={` ${theme === 'dark' ? 'bg-black' : ""} cursor-pointer`} value="" >All Visa Types</option>
           {visaTypes.map((type, index) => (
             <option key={index} value={type} className={`${theme === 'dark' ? 'bg-black' : ""}`}>
               {type}
@@ -57,7 +57,7 @@ const [filteredVisas, setFilteredVisas] = useState(visas);
             <p className={`${theme ==="dark" ? " text-white" : "text-gray-600"}`}>Processing Time: {visa.processingTime}</p>
             <p className={`${theme ==="dark" ? " text-white" : "text-gray-600"}`}>Fee: ${visa.fee}</p>
             <Link to={`/visa/${visa._id}`}>
-              <button className="mt-3 bg-blue-500 text-white px-4 py-2 rounded-md w-full">
+              <button className="mt-3 bg-blue-500 text-white px-4 py-2 rounded-md w-full cursor-pointer">
                 See Details
               </button>
             </Link>

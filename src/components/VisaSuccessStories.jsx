@@ -1,5 +1,7 @@
 import React from 'react';
 import useTheme from '../hooks/UseTheme';
+import { Fade } from 'react-awesome-reveal'; 
+import { Tooltip as ReactTooltip } from 'react-tooltip'; 
 
 const VisaSuccessStories = () => {
   const { theme } = useTheme();
@@ -28,50 +30,58 @@ const VisaSuccessStories = () => {
 
   return (
     <section className="my-16 px-4 max-w-6xl mx-auto">
-      <h2 className="text-4xl font-bold text-center mb-12 text-blue-500">
+      <h2 className="text-2xl md:text-4xl font-bold text-center mb-12 text-blue-500">
         Visa Success Stories
       </h2>
 
       <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
         {stories.map((person, idx) => (
-          <div
-            key={idx}
-            className={`group rounded-xl shadow-lg p-6 transition-transform transform hover:scale-105 flex flex-col justify-between hover:bg-blue-900 ${
-              isDark ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-800'
-            }`}
-          >
-            <div className="flex flex-col items-center mb-6">
-              <img
-                src={person.image}
-                alt={person.name}
-                className="w-32 h-32 rounded-full border-4 border-blue-300 shadow-lg mb-4 object-cover"
-              />
-              <h3 className="text-2xl font-semibold text-blue-400 group-hover:text-white">
-                {person.name}
-              </h3>
+          <Fade key={idx} delay={idx * 100} duration={500}> 
+            <div
+              className={`group rounded-xl shadow-lg p-6 transition-transform transform hover:scale-105 flex flex-col justify-between hover:bg-blue-900 ${
+                isDark ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-800'
+              }`}
+              data-tip={person.story} 
+              data-for={`tooltip-${idx}`} 
+            >
+              <div className="flex flex-col items-center mb-6">
+                <img
+                  src={person.image}
+                  alt={person.name}
+                  className="w-32 h-32 rounded-full border-4 border-blue-300 shadow-lg mb-4 object-cover"
+                />
+                <h3 className="md:text-2xl font-semibold text-blue-400 group-hover:text-white">
+                  {person.name}
+                </h3>
+                <p
+                  className={`text-sm group-hover:text-white ${
+                    isDark ? 'text-gray-400' : 'text-gray-600'
+                  }`}
+                >
+                  Visa for {person.country}
+                </p>
+              </div>
+
               <p
-                className={`text-sm group-hover:text-white ${
-                  isDark ? 'text-gray-400' : 'text-gray-600'
+                className={`italic text-center group-hover:text-white ${
+                  isDark ? 'text-gray-300' : 'text-gray-800'
                 }`}
               >
-                Visa for {person.country}
+                "{person.story}"
               </p>
-            </div>
 
-            <p
-              className={`italic text-center group-hover:text-white ${
-                isDark ? 'text-gray-300' : 'text-gray-800'
-              }`}
-            >
-              "{person.story}"
-            </p>
-
-            <div className="mt-4">
-              <span className="inline-block bg-blue-500 text-white text-xs font-semibold rounded-full px-3 py-1">
-                Success Story
-              </span>
+              <div className="mt-4">
+                <span
+                  className="inline-block bg-blue-500 text-white text-xs font-semibold rounded-full px-3 py-1"
+                  data-tip="This is a success story!" 
+                  data-for={`tooltip-${idx}`} 
+                >
+                  Success Story
+                </span>
+                <ReactTooltip id={`tooltip-${idx}`} place="top" effect="solid" /> 
+              </div>
             </div>
-          </div>
+          </Fade>
         ))}
       </div>
     </section>

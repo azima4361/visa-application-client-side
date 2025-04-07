@@ -14,7 +14,7 @@ const LatestVisa = () => {
 
   return (
     <section className="max-w-6xl mx-auto px-4 py-8">
-      <h2 className="text-3xl font-bold text-center mb-6">Latest Visa Applications</h2>
+      <h2 className="text-2xl md:text-3xl font-bold text-center mb-6">Latest Visa Applications</h2>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {visas.map((visa) => (
           <div key={visa._id} className="shadow-lg rounded-lg p-4">
@@ -27,14 +27,14 @@ const LatestVisa = () => {
             <p><strong>Validity:</strong> {visa.validity}</p>
             <p><strong>Application Method:</strong> {visa.applicationMethod}</p>
             <Link to={`/visa/${visa._id}`}>
-              <button className="mt-3 bg-blue-500 text-white px-4 py-2 rounded-md w-full">See Details</button>
+              <button className="mt-3 bg-blue-500 text-white px-4 py-2 rounded-md w-full cursor-pointer hover:bg-blue-800">See Details</button>
             </Link>
           </div>
         ))}
       </div>
       <div className="text-center mt-6">
         <Link to="/all">
-          <button className="bg-gray-800 text-white px-6 py-3 rounded-md">See All Visas</button>
+          <button className="bg-gray-800 text-white px-6 py-3 rounded-md cursor-pointer hover:bg-blue-800">See All Visas</button>
         </Link>
       </div>
     </section>

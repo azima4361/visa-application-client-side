@@ -24,7 +24,7 @@ const router = createBrowserRouter([
     loader: ()=>  fetch("http://localhost:5000/all"),
     children: [
       {
-        index: true, // Default route for "/"
+        index: true, 
         element: <Home />,
         loader: ()=>  fetch("http://localhost:5000/all"),
       },

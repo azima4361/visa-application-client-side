@@ -100,8 +100,8 @@ const MyAddedVisas = () => {
               <p><strong>Validity:</strong> {visa.validity}</p>
               <p><strong>Application Method:</strong> {visa.applicationMethod}</p>
               <div className="flex gap-2 mt-4">
-                <button onClick={() => openModal(visa)} className={`bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition`}>Update</button>
-                <button onClick={() => handleDelete(visa._id)} className={`bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition`}>Delete</button>
+                <button onClick={() => openModal(visa)} className={`bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition cursor-pointer`}>Update</button>
+                <button onClick={() => handleDelete(visa._id)} className={`bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition cursor-pointer`}>Delete</button>
               </div>
             </div>
           ))
@@ -122,8 +122,8 @@ const MyAddedVisas = () => {
           <input type="text" name="validity" value={formData.validity} onChange={handleChange} className={`border p-2 w-full ${theme === 'dark' ? 'bg-gray-700 text-white border-gray-600' : 'bg-white border-gray-300'}`} placeholder="Validity" required />
           <input type="text" name="applicationMethod" value={formData.applicationMethod} onChange={handleChange} className={`border p-2 w-full ${theme === 'dark' ? 'bg-gray-700 text-white border-gray-600' : 'bg-white border-gray-300'}`} placeholder="Application Method" required />
           <div className="flex gap-2 mt-3">
-            <button type="submit" className={`bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition`}>Save</button>
-            <button type="button" onClick={() => document.getElementById("updateModal").close()} className={`bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition`}>Cancel</button>
+            <button type="submit" className={`bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition cursor-pointer`}>Save</button>
+            <button type="button" onClick={() => document.getElementById("updateModal").close()} className={`bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition cursor-pointer`}>Cancel</button>
           </div>
         </form>
       </dialog>
